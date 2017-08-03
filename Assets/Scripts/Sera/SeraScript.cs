@@ -147,7 +147,7 @@ public class SeraScript : MonoBehaviour {
         }
 
         eShell.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-1,1)*3, 1, 0), ForceMode.Impulse);
-        bul.GetComponent<Rigidbody>().AddForce(new Vector3(2500 * MyFoward, Random.Range(-1,1),0));
+        bul.GetComponent<Rigidbody>().AddForce(new Vector3(1500 * MyFoward, Random.Range(-1,1),0));
         Destroy(bul, 3f);
     }
 
@@ -165,7 +165,7 @@ public class SeraScript : MonoBehaviour {
 
 
     }
-    bool IsJumping
+    public bool IsJumping
     {
         get
         {
