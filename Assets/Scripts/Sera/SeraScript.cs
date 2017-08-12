@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SeraScript : MonoBehaviour {
+using UnityEngine.UI;
+//[RequireComponent(typeof(DamageableEntity))]
+public class SeraScript : MonoBehaviour, DamageableEntity {
 
 
 
@@ -20,14 +21,25 @@ public class SeraScript : MonoBehaviour {
     [SerializeField]
     GameObject bullet, shell;
     GameObject myGun;
+    [SerializeField]
+    Image healthBar;
 
-#endregion
+    Rigidbody myRigid;
+
+    #endregion
+
+    #region vitals
+    int health = 100;
+
+
+    #endregion
 
 
     // Use this for initialization
     void Start () {
         myAnimator = GetComponent<Animator>();
         myGun = transform.GetChild(1).gameObject;
+        myRigid = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -46,6 +58,16 @@ public class SeraScript : MonoBehaviour {
             flipped = true;
             FlipChildren(true);
         }
+
+
+        //Health
+        float perc = (float)health/100;
+        if(health <= 0)
+        {
+            Die();
+        }
+        else
+            healthBar.transform.localScale = new Vector3(perc,0.6663f,1);
     }
 
 
@@ -151,7 +173,46 @@ public class SeraScript : MonoBehaviour {
         Destroy(bul, 3f);
     }
 
-#region GetSet
+
+    #region vital functions----------------------------------------------------------------------------------------------------------------------
+    
+    public void RegenerateHealth(int value)
+    {
+        if (health + value <= 100)
+            health += value;
+        else
+            health = 100;
+    }
+    
+    void Die()
+    {
+
+    }
+
+    void  DamageableEntity.GetDamaged(GameObject whatHitMe)
+    {
+      
+        //reduce health by an amount
+        health -= 10;
+        //knock back the player
+        if(whatHitMe.transform.position.x < transform.position.x)
+        {
+            myRigid.AddForce(new Vector3(1, 1, 0) * 75);
+        }
+        else
+        {
+            myRigid.AddForce(new Vector3(-1, 1, 0) * 75);
+        }
+
+
+
+    }
+
+    #endregion vital functions
+
+
+
+    #region GetSet
     int MyFoward
     {
         get

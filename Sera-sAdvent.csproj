@@ -78,9 +78,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DamageableEntity.cs" />
     <Compile Include="Assets\Scripts\JumpPadScript.cs" />
     <Compile Include="Assets\Scripts\ScorpoScript.cs" />
     <Compile Include="Assets\Scripts\Sera\SeraScript.cs" />
+    <Compile Include="Assets\VaseScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Art\Flash.shader" />
