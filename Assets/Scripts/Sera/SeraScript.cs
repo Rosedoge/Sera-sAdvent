@@ -136,6 +136,15 @@ public class SeraScript : MonoBehaviour, DamageableEntity {
         }
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Contains("Item"))
+        {
+
+        }
+    }
+
     void FlipChildren(bool tf)
     {
         foreach(Transform child in transform)
@@ -238,7 +247,6 @@ public class SeraScript : MonoBehaviour, DamageableEntity {
             jumping = value;
             IsWalking = false;
         }
-
 
     }
     bool IsWalking
